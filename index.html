@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Selector</title>
+    <style>
+      body {
+        background-color: black;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      div {
+        margin: 8rem auto;
+        width: 300px;
+        border: 2px solid black;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 10px;
+        background-color: rgb(203, 203, 203);
+        box-shadow: 0px 0px 10px 5px gold;
+        color: rgb(0, 0, 0);
+        text-shadow: 1px 1px 2px rgb(139, 139, 139);
+        font-weight: bold;
+      }
+      button {
+        background-color: gold;
+        padding: 0.5em;
+        font-size: 1em;
+        border-radius: 4px;
+        box-shadow: 1px 1px 4px rgb(47, 47, 47);
+      }
+      #choose {
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Who is left:</h1>
+      <p></p>
+      <h2 class="">Name:</h2>
+      <h2 id="choose">?</h2>
+      <button>Pick a name</button>
+    </div>
+  </body>
+  <script>
+    const student_names = [
+      " abdul",
+      " lily",
+      " safa",
+      " brian",
+      " joel",
+      " martin",
+      " wendy",
+      " oma",
+      " tatiana",
+      " james",
+    ];
+    // " skylar",
+    // " sibel",
+    // " sam",
+    // " victoria",
+    document.querySelector("p").innerHTML = student_names;
+    const pick_a_name = document.querySelector("button");
+    const name_display = document.querySelector("#choose");
+    let random;
+
+    pick_a_name.addEventListener("click", () => {
+      let timeout = 10;
+      console.log("timeout 1: " + timeout);
+
+      let interval = setInterval(() => {
+        random = Math.floor(Math.random() * student_names.length);
+        console.log(student_names[random], timeout);
+        let random_color_r = Math.floor(Math.random() * 255);
+        let random_color_g = Math.floor(Math.random() * 255);
+        let random_color_b = Math.floor(Math.random() * 255);
+        name_display.style.color = `rgb(${random_color_r}, ${random_color_g}, ${random_color_b})`;
+        name_display.innerHTML = student_names[random].toUpperCase();
+        timeout += 1;
+        if (timeout >= 500) {
+          student_names.splice(random, 1);
+          console.log(student_names);
+          clearInterval(interval);
+        }
+        
+      }, timeout);
+    });
+  </script>
+  <style></style>
+</html>
